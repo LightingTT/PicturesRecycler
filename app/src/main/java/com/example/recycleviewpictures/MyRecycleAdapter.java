@@ -1,7 +1,6 @@
 package com.example.recycleviewpictures;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,22 +9,28 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import java.util.List;
-import java.util.zip.Inflater;
 
 public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.GridViewHolder> {
 
-   private Context context;
+    private Context context;
+    private static List<String> imageList;
+
 
     public static class GridViewHolder extends RecyclerView.ViewHolder {
+
         private ImageView imageView;
+
         public GridViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.single_picture_id);
+
         }
     }
 
-    public MyRecycleAdapter(Context context){
+    public MyRecycleAdapter(Context context, List<String> imageList)
+    {
         this.context = context;
+        this.imageList = imageList;
     }
 
     @NonNull
@@ -39,12 +44,12 @@ public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.Grid
     public void onBindViewHolder(@NonNull MyRecycleAdapter.GridViewHolder holder, int position) {
         Glide
                 .with(context)
-                .load("https://picsum.photos/200")
+                .load(imageList.get(position))
                 .into(holder.imageView);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return imageList.size();
     }
 }

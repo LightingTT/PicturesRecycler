@@ -6,7 +6,11 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3a8edb4-9c83-4c4f-b96b-0e43f3d65dd4" name="Default Changelist" comment="" />
+    <list default="true" id="a3a8edb4-9c83-4c4f-b96b-0e43f3d65dd4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/recycleviewpictures/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/recycleviewpictures/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/recycleviewpictures/MyRecycleAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/recycleviewpictures/MyRecycleAdapter.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -121,17 +125,17 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1602172731415">
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1602245145875">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602172731415" />
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602245145875" />
     <state x="540" y="275" key="AndroidCreateResourceFileDialog" timestamp="1602169142750">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="540" y="275" key="AndroidCreateResourceFileDialog/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602169142750" />
-    <state x="678" y="469" key="com.intellij.ide.util.TipDialog" timestamp="1602174511162">
+    <state x="678" y="469" key="com.intellij.ide.util.TipDialog" timestamp="1602244238503">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="678" y="469" key="com.intellij.ide.util.TipDialog/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602174511162" />
+    <state x="678" y="469" key="com.intellij.ide.util.TipDialog/1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1602244238503" />
   </component>
 </project>
