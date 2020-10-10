@@ -15,14 +15,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.linear_layout_with_recycleview);
 
-        for (int i = 0;i < 14; i++)
-        {
-            imageList.add("https://picsum.photos/200");
-        }
+        fillArrayList(5);
 
         RecyclerView recycleView = findViewById(R.id.linear_layout_with_recycleView_ID);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recycleView.setLayoutManager(linearLayoutManager);
         recycleView.setAdapter(new MyRecycleAdapter(MainActivity.this, imageList));
+    }
+    private static void fillArrayList(int x)
+    {
+        for (int i = 1;i < x + 1; i++)
+        {
+            imageList.add("https://picsum.photos/200");
+        }
     }
 }
