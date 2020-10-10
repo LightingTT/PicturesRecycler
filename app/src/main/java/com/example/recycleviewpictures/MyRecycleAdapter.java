@@ -8,26 +8,24 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
-import java.util.List;
+import java.util.ArrayList;
 
-public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.GridViewHolder> {
+public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.LinearViewHolderClass> {
 
     private Context context;
-    private static List<String> imageList;
+    private ArrayList<String> imageList;
 
-
-    public static class GridViewHolder extends RecyclerView.ViewHolder {
+    public class LinearViewHolderClass extends RecyclerView.ViewHolder{
 
         private ImageView imageView;
 
-        public GridViewHolder(@NonNull View itemView) {
+        public LinearViewHolderClass(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.single_picture_id);
-
         }
     }
 
-    public MyRecycleAdapter(Context context, List<String> imageList)
+    public MyRecycleAdapter(Context context, ArrayList<String> imageList)
     {
         this.context = context;
         this.imageList = imageList;
@@ -35,13 +33,15 @@ public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.Grid
 
     @NonNull
     @Override
-    public MyRecycleAdapter.GridViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.linear_layout_with_recycleview, parent, false);
-        return new GridViewHolder(itemView);
+    public LinearViewHolderClass onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        View view = LayoutInflater.from(context).inflate(R.layout.single_picture_view, parent, false);
+        LinearViewHolderClass linearViewHolderClass = new LinearViewHolderClass(view);
+        return linearViewHolderClass;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyRecycleAdapter.GridViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull LinearViewHolderClass holder, int position) {
         Glide
                 .with(context)
                 .load(imageList.get(position))
