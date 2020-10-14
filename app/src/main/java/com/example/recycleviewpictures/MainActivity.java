@@ -32,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
         recycleView.setAdapter(recyclerAdapter);
 
         Log.d(TAG, "onCreate: ------>called<-----");
-
+        
+        //Creating reference for MyService and receiving deserialized data.
         MyService apiClient = ApiClient.getClient().create(MyService.class);
         Call<ArrayList<Pictures>> call = apiClient.getFile();
 
