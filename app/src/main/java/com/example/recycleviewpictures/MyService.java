@@ -8,6 +8,7 @@ import retrofit2.http.Url;
 
 public interface MyService {
 
-    @GET
+    //Co tutaj jest moim endpointem? Dla picsum.photos
+    @GET("")
     Call<ArrayList<Pictures>> getFile();
 }
