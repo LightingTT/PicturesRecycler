@@ -8,8 +8,10 @@ import retrofit2.http.Url;
 
 public interface MyService {
 
-    //Co tutaj jest moim endpointem? Dla picsum.photos
+    //What is my endpoint for lorem.picsum here?
     @GET("")
-    //Mam zagniezdzoną tutaj klase z danymi, ktore chce pobrac. Czy klasa "Pictures" jest w ogole tutaj potrzebna?
+    //Do I need nested Pictures class here?I saw examples like:
+    //Call<Collection> yourGetFunction() 
+    //without data class.
     Call<ArrayList<Pictures>> getFile();
 }
