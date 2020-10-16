@@ -9,18 +9,18 @@ import com.google.gson.annotations.SerializedName;
 public class Pictures {
 
     @SerializedName("picture")
-    private String picturesUrl;
+    private String imageUrl;
 
     public Pictures (String picturesUrl)
     {
-        this.picturesUrl = picturesUrl;
+        this.imageUrl = picturesUrl;
     }
 
     public String getImageUrl() {
-        return picturesUrl;
+        return imageUrl;
     }
 
     public void setImageUrl(String picturesUrl) {
-        this.picturesUrl = picturesUrl;
+        this.imageUrl = picturesUrl;
     }
 }

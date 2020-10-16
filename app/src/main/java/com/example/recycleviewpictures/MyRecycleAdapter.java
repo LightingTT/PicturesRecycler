@@ -11,21 +11,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.ViewHolderClass> {
 
     private static final String TAG = "MainActivity";
     private Context context;
-    private ArrayList<Pictures> imageList;
+    private List<Pictures> imageList;
 
     //Constructor
-    public MyRecycleAdapter(Context context, ArrayList<Pictures> imageList)
+    public MyRecycleAdapter(Context context, List<Pictures> imageList)
     {
         this.context = context;
         this.imageList = imageList;
     }
-    //
-    public void setMyRecycleAdapter(ArrayList<Pictures> imageList)
+
+    public void setMyRecycleAdapter(List<Pictures> imageList)
     {
         this.imageList = imageList;
         notifyDataSetChanged();
