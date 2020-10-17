@@ -27,10 +27,10 @@ public class MainActivity extends AppCompatActivity {
 
         //Create RecycleView object and pin view
         RecyclerView recycleView = findViewById(R.id.linear_layout_with_recycleView_ID);
-        GridLayoutManager linearLayoutManager = new GridLayoutManager (this, 2);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager (this, 2);
 
         //Setup Adapter
-        recycleView.setLayoutManager(linearLayoutManager);
+        recycleView.setLayoutManager(gridLayoutManager);
         recyclerAdapter = new MyRecycleAdapter(MainActivity.this, imageList);
         recycleView.setAdapter(recyclerAdapter);
 
@@ -38,18 +38,18 @@ public class MainActivity extends AppCompatActivity {
         
         //Creating reference for MyService and receiving deserialized data.
         ApiService apiClient = ApiClient.getClient().create(ApiService.class);
-        Call<List> call = apiClient.getFile();
+        Call<List<Pictures>> call = apiClient.getFile();
 
-        call.enqueue(new Callback<List>() {
+        call.enqueue(new Callback<List<Pictures>>() {
             @Override
-            public void onResponse(Call<List> call, Response<List> response) {
+            public void onResponse(Call<List<Pictures>> call, Response<List<Pictures>> response) {
                 imageList = response.body();
                 Log.d(TAG, "onResponse: ------>called<-----");
                 recyclerAdapter.setMyRecycleAdapter(imageList);
             }
 
             @Override
-            public void onFailure(Call<List> call, Throwable t) {
+            public void onFailure(Call<List<Pictures>> call, Throwable t) {
                 Log.d("TAG","onFailure = ------>called<----- "+t.toString());
             }
         });

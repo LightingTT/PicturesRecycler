@@ -8,5 +8,5 @@ import retrofit2.http.GET;
 public interface ApiService {
 
     @GET("200/")
-    Call<List> getFile();
+    Call<List<Pictures>> getFile();
 }
