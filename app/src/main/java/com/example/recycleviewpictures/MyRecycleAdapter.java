@@ -46,7 +46,7 @@ public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.View
         Glide
                         .with(context)
                         .load(imageList
-                        .get(position).getImageUrl())
+                        .get(position))
                         .apply(RequestOptions
                         .centerCropTransform())
                         .into(holder.imageView);

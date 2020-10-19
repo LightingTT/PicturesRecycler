@@ -7,6 +7,6 @@ import retrofit2.http.GET;
 
 public interface ApiService {
 
-    @GET("200/")
+    @GET("id/0/5616/3744/")
     Call<List<Pictures>> getFile();
 }

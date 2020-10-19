@@ -11,9 +11,12 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String BASE_URL = "https://picsum.photos/";
     private static final String TAG = "MainActivity";
     public static List<Pictures> imageList;
     MyRecycleAdapter recyclerAdapter;
@@ -35,12 +38,10 @@ public class MainActivity extends AppCompatActivity {
         recycleView.setAdapter(recyclerAdapter);
 
         Log.d(TAG, "onCreate: ------>called<-----");
-        
-        //Creating reference for MyService and receiving deserialized data.
-        ApiService apiClient = ApiClient.getClient().create(ApiService.class);
-        Call<List<Pictures>> call = apiClient.getFile();
 
-        call.enqueue(new Callback<List<Pictures>>() {
+        //Creating reference for MyService and receiving deserialized data.
+        ApiClient apiClient = new ApiClient(BASE_URL);
+        apiClient.getApiService().getFile().enqueue(new Callback<List<Pictures>>() {
             @Override
             public void onResponse(Call<List<Pictures>> call, Response<List<Pictures>> response) {
                 imageList = response.body();
