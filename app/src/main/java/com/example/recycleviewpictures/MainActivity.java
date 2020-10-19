@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<Pictures>> call, Response<List<Pictures>> response) {
                 imageList = response.body();
                 Log.d(TAG, "onResponse: ------>called<-----");
-                recyclerAdapter.setMyRecycleAdapter(imageList);
+                recyclerAdapter.setMyRecycleAdapter(imageList); // tutaj wrzucic update diff utils
             }
 
             @Override
