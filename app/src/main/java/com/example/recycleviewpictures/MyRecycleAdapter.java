@@ -7,11 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
-import java.util.ArrayList;
+import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
 import java.util.List;
+
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.ViewHolderClass> {
 
@@ -26,12 +28,6 @@ public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.View
         this.imageList = imageList;
     }
 
-    public void setMyRecycleAdapter(List<Pictures> imageList)
-    {
-        this.imageList = imageList;
-        notifyDataSetChanged();
-    }
-
     @NonNull
     @Override
     public ViewHolderClass onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -43,13 +39,26 @@ public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderClass holder, int position) {
+
+        DrawableCrossFadeFactory factory =
+                new DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build();
         Glide
                         .with(context)
-                        .load(imageList
-                        .get(position).getDownloadUrl())
+                        .load(imageList.get(position).getDownloadUrl())
+                        .transition(withCrossFade(factory))
                         .centerCrop()
                         .into(holder.imageView);
         Log.d(TAG, "onBindViewHolder: ------>called<-----");
+    }
+
+    public void updateRecycleAdapter(List<Pictures> imageListDiff)
+    {
+        final DiffUtilsCallback diffUtilsCallback = new DiffUtilsCallback(this.imageList, imageListDiff);
+        final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffUtilsCallback);
+
+        this.imageList.clear();
+        this.imageList.addAll(imageListDiff);
+        diffResult.dispatchUpdatesTo(this);
     }
 
     @Override

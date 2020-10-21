@@ -7,6 +7,6 @@ import retrofit2.http.GET;
 
 public interface ApiService {
 
-    @GET("/v2/list")
+    @GET("/v2/list?page=2&limit=100")
     Call<List<Pictures>> getFile();
 }

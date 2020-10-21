@@ -33,6 +33,18 @@ public class Pictures {
     @Expose
     private String downloadUrl;
 
+    @Override
+    public String toString() {
+        return "Pictures{" +
+                "id='" + id + '\'' +
+                ", author='" + author + '\'' +
+                ", width=" + width +
+                ", height=" + height +
+                ", url='" + url + '\'' +
+                ", downloadUrl='" + downloadUrl + '\'' +
+                '}';
+    }
+
     public String getId() {
         return id;
     }
