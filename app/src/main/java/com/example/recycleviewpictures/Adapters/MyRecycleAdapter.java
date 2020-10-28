@@ -1,4 +1,4 @@
-package com.example.recycleviewpictures;
+package com.example.recycleviewpictures.Adapters;
 
 import android.content.Context;
 import android.util.Log;
@@ -11,17 +11,20 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
+import com.example.recycleviewpictures.Utils.Constants;
+import com.example.recycleviewpictures.Utils.DiffUtilsCallback;
+import com.example.recycleviewpictures.Requests.Responsnes.Pictures;
+import com.example.recycleviewpictures.R;
+
 import java.util.List;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.ViewHolderClass> {
 
-    private static final String TAG = "MainActivity";
     private Context context;
     private List<Pictures> imageList;
 
-    //Constructor
     public MyRecycleAdapter(Context context, List<Pictures> imageList)
     {
         this.context = context;
@@ -40,15 +43,18 @@ public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolderClass holder, int position) {
 
-        DrawableCrossFadeFactory factory =
-                new DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build();
+        DrawableCrossFadeFactory factory = new DrawableCrossFadeFactory
+                        .Builder()
+                        .setCrossFadeEnabled(true)
+                        .build();
+
         Glide
                         .with(context)
                         .load(imageList.get(position).getDownloadUrl())
                         .transition(withCrossFade(factory))
                         .centerCrop()
                         .into(holder.imageView);
-        Log.d(TAG, "onBindViewHolder: ------>called<-----");
+        Log.d(Constants.TAG, "onBindViewHolder: ------>called<-----");
     }
 
     public void updateRecycleAdapter(List<Pictures> imageListDiff)
@@ -70,7 +76,6 @@ public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.View
 
         private ImageView imageView;
 
-        //Constructor
         public ViewHolderClass(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.single_picture_id);

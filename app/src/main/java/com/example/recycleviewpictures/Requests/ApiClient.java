@@ -1,5 +1,10 @@
-package com.example.recycleviewpictures;
+/*
+ * Copyright (c) 2020. by Piotr Zaremba
+ */
 
+package com.example.recycleviewpictures.Requests;
+
+import com.example.recycleviewpictures.Requests.ApiService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
