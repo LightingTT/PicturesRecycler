@@ -1,6 +1,9 @@
-package com.example.recycleviewpictures;
+package com.example.recycleviewpictures.Utils;
 
 import androidx.recyclerview.widget.DiffUtil;
+
+import com.example.recycleviewpictures.Requests.Responsnes.Pictures;
+
 import java.util.List;
 
 public class DiffUtilsCallback extends DiffUtil.Callback {
