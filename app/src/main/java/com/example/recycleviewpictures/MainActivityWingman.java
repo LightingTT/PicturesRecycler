@@ -15,6 +15,11 @@ import com.example.recycleviewpictures.ViewModels.PictureListViewModel;
 
 import java.util.List;
 
+/*
+ * TODO
+ * Class will be redesigned later.
+ */
+
 public abstract class MainActivityWingman extends AppCompatActivity {
 
     public ProgressBar progressBar;
