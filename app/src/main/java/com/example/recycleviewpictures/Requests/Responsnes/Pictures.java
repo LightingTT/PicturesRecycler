@@ -16,29 +16,12 @@ import com.google.gson.annotations.SerializedName;
 
 public class Pictures implements Parcelable {
 
-    @SerializedName("id")
-    @Expose
     private String id;
-
-    @SerializedName("author")
-    @Expose
     private String author;
-
-    @SerializedName("width")
-    @Expose
     private Integer width;
-
-    @SerializedName("height")
-    @Expose
     private Integer height;
-
-    @SerializedName("url")
-    @Expose
     private String url;
-
-    @SerializedName("download_url")
-    @Expose
-    private String downloadUrl;
+    private String download_url;
 
     protected Pictures(Parcel in) {
         id = in.readString();
@@ -54,7 +37,7 @@ public class Pictures implements Parcelable {
             height = in.readInt();
         }
         url = in.readString();
-        downloadUrl = in.readString();
+        download_url = in.readString();
     }
     private Pictures pictureObj;
 
@@ -83,7 +66,7 @@ public class Pictures implements Parcelable {
                 ", width=" + width +
                 ", height=" + height +
                 ", url='" + url + '\'' +
-                ", downloadUrl='" + downloadUrl + '\'' +
+                ", downloadUrl='" + download_url + '\'' +
                 '}';
     }
 
@@ -93,59 +76,27 @@ public class Pictures implements Parcelable {
         this.width = width;
         this.height = height;
         this.url = url;
-        this.downloadUrl = downloadUrl;
+        this.download_url = downloadUrl;
     }
 
     public Pictures() {
 
     }
-
     public String getId() {
         return id;
     }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getAuthor() {
         return author;
     }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
     public Integer getWidth() {
         return width;
     }
-
-    public void setWidth(Integer width) {
-        this.width = width;
-    }
-
     public Integer getHeight() {
         return height;
     }
-
-    public void setHeight(Integer height) {
-        this.height = height;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
+    public String getUrl() { return url; }
     public String getDownloadUrl() {
-        return downloadUrl;
-    }
-
-    public void setDownloadUrl(String downloadUrl) {
-        this.downloadUrl = downloadUrl;
+        return download_url;
     }
 
     @Override
@@ -170,6 +121,6 @@ public class Pictures implements Parcelable {
             dest.writeInt(height);
         }
         dest.writeString(url);
-        dest.writeString(downloadUrl);
+        dest.writeString(download_url);
     }
 }
