@@ -78,7 +78,8 @@ private class RetrievePicturesRunnable implements Runnable
 
     @Override
     public void run() {
-        Call<List<Pictures>> responseCall = getPictures(page, limit);
+        ApiService apiService = ServiceGenerator.getApiService();
+        Call<List<Pictures>> responseCall =apiService.getPictureListApi(page, limit);
         responseCall.enqueue(new Callback<List<Pictures>>() {
             @Override
             public void onResponse(Call<List<Pictures>> call, Response<List<Pictures>> response) {
@@ -110,11 +111,6 @@ private class RetrievePicturesRunnable implements Runnable
         if(cancelRequest) {
             return;
         }
-    }
-
-    private Call<List<Pictures>> getPictures(String page, String limit)
-    {
-        return ServiceGenerator.getApiService().getPictureListApi(page, limit);
     }
 
     private void cancelRequest()

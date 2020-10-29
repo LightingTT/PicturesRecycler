@@ -10,10 +10,8 @@ import java.util.concurrent.ScheduledExecutorService;
 public class AppExecutors {
     private static AppExecutors instance;
 
-    public static AppExecutors getInstance()
-    {
-        if (instance == null)
-        {
+    public static AppExecutors getInstance() {
+        if (instance == null) {
             instance = new AppExecutors();
         }
         return instance;
