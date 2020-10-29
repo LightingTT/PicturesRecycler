@@ -6,25 +6,20 @@ import com.google.gson.GsonBuilder;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.example.recycleviewpictures.MainActivity.BASE_URL;
+
 public class ApiClient {
 
-    private static ApiService apiService;
-    private static Retrofit retrofit;
+    private static Retrofit.Builder retrofitBuilder = new Retrofit
+            .Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create());
 
-    Gson gson = new GsonBuilder()
-            .setLenient()
-            .create();
+    private static Retrofit retrofit = retrofitBuilder.build();
 
-    public ApiClient (String BASE_URL)
-    {
-        retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-        apiService = retrofit.create(ApiService.class);
-    }
+    private static ApiService apiService = retrofit.create(ApiService.class);
 
-    public ApiService getApiService(){
+    public static ApiService getPictureApi(){
         return apiService;
     }
 

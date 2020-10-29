@@ -1,8 +1,11 @@
 package com.example.recycleviewpictures;
 
+import androidx.annotation.LongDef;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.graphics.Picture;
 import android.os.Bundle;
 import android.util.Log;
 import java.util.ArrayList;
@@ -26,32 +29,42 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        imageList = new ArrayList<>();
-
-        //Create RecycleView object and pin view
-        RecyclerView recycleView = findViewById(R.id.linear_layout_with_recycleView_ID);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager (this, 2);
-
-        //Setup Adapter
-        recycleView.setLayoutManager(gridLayoutManager);
-        recyclerAdapter = new MyRecycleAdapter(MainActivity.this, imageList);
-        recycleView.setAdapter(recyclerAdapter);
+//        imageList = new ArrayList<>();
+//
+//        //Create RecycleView object and pin view
+//        RecyclerView recycleView = findViewById(R.id.linear_layout_with_recycleView_ID);
+//        GridLayoutManager gridLayoutManager = new GridLayoutManager (this, 2);
+//
+//        //Setup Adapter
+//        recycleView.setLayoutManager(gridLayoutManager);
+//        recyclerAdapter = new MyRecycleAdapter(MainActivity.this, imageList);
+//        recycleView.setAdapter(recyclerAdapter);
 
         Log.d(TAG, "onCreate: ------>called<-----");
-
+        testRetrofit();
         //Creating reference for MyService and receiving deserialized data.
-        ApiClient apiClient = new ApiClient(BASE_URL);
-        apiClient.getApiService().getFile().enqueue(new Callback<List<Pictures>>() {
+
+
+    }
+    private void testRetrofit()
+    {
+        ApiService apiService = ApiClient.getPictureApi();
+        Call<List<Pictures>> responseCall = apiService.getPictureList("2", "10");
+        responseCall.enqueue(new Callback<List<Pictures>>() {
             @Override
             public void onResponse(Call<List<Pictures>> call, Response<List<Pictures>> response) {
-                imageList = response.body();
-                recyclerAdapter.updateRecycleAdapter(imageList);
-                Log.d(TAG, "onResponse: ------>called<-----");
+                Log.d(TAG, "onResponse: server response: " + response.errorBody());
+                if (response.code() == 200)
+                {
+                    Log.d(TAG, "onResponse: " + response.body().toString());
+                    List<Pictures> pictures =  new ArrayList<>(response.body());
+                    Log.d(TAG, "onResponse: Retrived picture " + pictures.toString());
+                }
             }
 
             @Override
             public void onFailure(Call<List<Pictures>> call, Throwable t) {
-                Log.d("TAG","onFailure = ------>called<----- "+t.toString());
+
             }
         });
 
