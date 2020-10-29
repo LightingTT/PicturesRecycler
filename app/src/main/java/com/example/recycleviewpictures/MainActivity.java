@@ -1,5 +1,6 @@
 package com.example.recycleviewpictures;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -25,24 +26,23 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends MainActivityWingman{
+public class MainActivity extends AppCompatActivity {
 
     public static List<Pictures> imageList;
     MyRecycleAdapter recyclerAdapter;
     RecyclerView recycleView;
     GridLayoutManager gridLayoutManager;
     private PictureListViewModel pictureListViewModel;
-    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        pictureListViewModel = ViewModelProviders.of(this).get(PictureListViewModel.class);
-//        subscribeObservers();
-
-        initRecyclerView();
-        apiCallStart();
+        pictureListViewModel = ViewModelProviders.of(this).get(PictureListViewModel.class);
+        subscribeObservers();
+        testRetrofit();
+//        initRecyclerView();
+//        apiCallStart();
     }
 
 
@@ -84,6 +84,18 @@ public class MainActivity extends MainActivityWingman{
 
             }
         });
+    }
+
+    /*
+     * MainActivity <-- PictureListViewModel <-- PictureRepository <-- PictureApiClient
+     */
+    private void picturesApi(String page, String limit)
+    {
+        pictureListViewModel.picturesApi(page, limit);
+    }
+
+    private void testRetrofit(){
+        picturesApi("1", "70");
     }
 
 }

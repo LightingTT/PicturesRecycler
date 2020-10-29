@@ -14,10 +14,8 @@ public class PictureRepository {
     private static PictureRepository instance;
     private PictureApiClient pictureApiClient;
 
-    public static PictureRepository getInstance()
-    {
-        if(instance == null)
-        {
+    public static PictureRepository getInstance() {
+        if(instance == null) {
             instance = new PictureRepository();
         }
         return instance;
@@ -29,5 +27,12 @@ public class PictureRepository {
 
     public LiveData<List<Pictures>> getPictures(){
         return pictureApiClient.getPictures();
+    }
+    public void picturesApi(String page, String limit)
+    {
+        if (page == "0"){
+            page = "1";
+        }
+        pictureApiClient.picturesAPI(page, limit);
     }
 }

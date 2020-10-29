@@ -4,6 +4,7 @@
 
 package com.example.recycleviewpictures.Requests;
 
+import android.graphics.Picture;
 import android.os.Build;
 import android.util.Log;
 
@@ -28,10 +29,8 @@ public class PictureApiClient {
     private MutableLiveData<List<Pictures>> picturesLiveData;
     private RetrievePicturesRunnable retrievePicturesRunnable;
 
-    public static PictureApiClient getInstance()
-    {
-        if(instance == null)
-        {
+    public static PictureApiClient getInstance() {
+        if(instance == null) {
             instance = new PictureApiClient();
         }
         return instance;
@@ -39,14 +38,14 @@ public class PictureApiClient {
 
     private PictureApiClient(){
         picturesLiveData = new MutableLiveData<>();
-
     }
+
     public LiveData<List<Pictures>> getPictures(){
         return picturesLiveData;
     }
 
-    public void picturesAPI(String page, String limit)
-    {
+    public void picturesAPI(String page, String limit) {
+
         if(retrievePicturesRunnable != null) {
             retrievePicturesRunnable = null;
         }
@@ -61,10 +60,10 @@ public class PictureApiClient {
             public void run() {
                 // Let the user know its timed out
                 handler.cancel(true);
-
             }
         }, Constants.NETWORK_TIMEOUT, TimeUnit.MILLISECONDS);
     }
+
 private class RetrievePicturesRunnable implements Runnable
 {
     private String page;
@@ -85,10 +84,16 @@ private class RetrievePicturesRunnable implements Runnable
             public void onResponse(Call<List<Pictures>> call, Response<List<Pictures>> response) {
                 Log.d(Constants.TAG, "onResponse: Server response: " + response.toString());
                 List<Pictures> imageList = response.body();
-                if(page == "2")
+                Log.d(Constants.TAG, "onResponse: " + response.body().toString());
+                for(Pictures picture : imageList){
+                    Log.d(Constants.TAG, "onResponse: " + picture.getDownloadUrl());
+                }
+
+                if(page == "1")
                 {
                     picturesLiveData.postValue(imageList);
-                }else
+                }
+                else
                 {
                     //Tutaj moze byc zjebane, dodaje jeden obiekt a wyzej dodaje cala liste.
                     List<Pictures> currentList = picturesLiveData.getValue();

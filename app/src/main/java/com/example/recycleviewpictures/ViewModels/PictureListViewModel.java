@@ -13,7 +13,6 @@ public class PictureListViewModel extends ViewModel {
     private MutableLiveData<List<Pictures>> pictureList = new MutableLiveData<>();
     private PictureRepository pictureRepository;
 
-
     public PictureListViewModel() {
     pictureRepository = PictureRepository.getInstance();
     }
@@ -23,5 +22,8 @@ public class PictureListViewModel extends ViewModel {
         return pictureRepository.getPictures();
     }
 
+    public void picturesApi(String page, String limit) {
+        pictureRepository.picturesApi(page, limit);
+    }
 
 }
