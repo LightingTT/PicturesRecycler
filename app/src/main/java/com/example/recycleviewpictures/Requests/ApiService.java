@@ -15,10 +15,11 @@ import retrofit2.http.Query;
 
 public interface ApiService {
 
+    //list
     @GET("/v2/list")
     Call<List<Pictures>> getPictureListApi(@Query("page") String page,
                                            @Query("limit") String limit);
-
+    //single image
     @GET("/id/{number}/info")
     Call <Pictures> getPictureApi(@Path("number") int number);
 }

@@ -39,12 +39,6 @@ public class Pictures implements Parcelable {
         url = in.readString();
         download_url = in.readString();
     }
-    private Pictures pictureObj;
-
-    public Pictures getPictureResponse() {
-        pictureObj = new Pictures();
-        return pictureObj;
-    }
 
     public static final Creator<Pictures> CREATOR = new Creator<Pictures>() {
         @Override

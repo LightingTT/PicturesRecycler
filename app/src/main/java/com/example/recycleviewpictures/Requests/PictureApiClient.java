@@ -55,7 +55,10 @@ public class PictureApiClient {
                 .getNetworkIO()
                 .submit(retrievePicturesRunnable);
 
-        AppExecutors.getInstance().getNetworkIO().schedule(new Runnable() {
+        AppExecutors
+                .getInstance()
+                .getNetworkIO()
+                .schedule(new Runnable() {
             @Override
             public void run() {
                 // Let the user know its timed out
@@ -68,12 +71,11 @@ private class RetrievePicturesRunnable implements Runnable
 {
     private String page;
     private String limit;
-    boolean cancelRequest;
+
 
     public RetrievePicturesRunnable(String page, String limit) {
         this.page = page;
         this.limit = limit;
-        cancelRequest = false;
     }
 
     @Override
@@ -96,7 +98,7 @@ private class RetrievePicturesRunnable implements Runnable
                 }
                 else
                 {
-                    //Tutaj moze byc zjebane, dodaje jeden obiekt a wyzej dodaje cala liste.
+                    //Tutaj jest zjebane, dodaje jeden obiekt a wyzej dodaje cala liste.
                     List<Pictures> currentList = picturesLiveData.getValue();
                     currentList.add(new Pictures()); // <--
                     picturesLiveData.postValue(currentList);
@@ -105,18 +107,8 @@ private class RetrievePicturesRunnable implements Runnable
 
             @Override
             public void onFailure(Call<List<Pictures>> call, Throwable t) {
-
             }
         });
-        if(cancelRequest) {
-            return;
-        }
-    }
-
-    private void cancelRequest()
-    {
-        Log.d(Constants.TAG, "cancelRequest: cacneling the search request");
-        cancelRequest = true;
     }
 }
 
