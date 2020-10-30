@@ -29,9 +29,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     public static List<Pictures> imageList;
-    MyRecycleAdapter recyclerAdapter;
-    RecyclerView recycleView;
-    GridLayoutManager gridLayoutManager;
+    private MyRecycleAdapter recyclerAdapter;
     private PictureListViewModel pictureListViewModel;
 
     @Override
@@ -39,51 +37,32 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         pictureListViewModel = ViewModelProviders.of(this).get(PictureListViewModel.class);
+
+        initRecyclerView();
         subscribeObservers();
-        testRetrofit();
-//        initRecyclerView();
-//        apiCallStart();
-    }
-
-
-    private void initRecyclerView()
-    {
-        imageList = new ArrayList<>();
-        recycleView = findViewById(R.id.linear_layout_with_recycleView_ID);
-
-        gridLayoutManager = new GridLayoutManager (this, 2);
-        recycleView.setLayoutManager(gridLayoutManager);
-        recyclerAdapter = new MyRecycleAdapter(MainActivity.this, imageList);
-        recycleView.setAdapter(recyclerAdapter);
-    }
-
-    private void apiCallStart()
-    {
-        ApiService apiService = ServiceGenerator.getApiService();
-        Call<List<Pictures>> responseCall = apiService.getPictureListApi("2", "50");
-        responseCall.enqueue(new Callback<List<Pictures>>() {
-            @Override
-            public void onResponse(Call<List<Pictures>> call, Response<List<Pictures>> response) {
-                Log.d(Constants.TAG, "onResponse: Server response: " + response.toString());
-                List<Pictures> imageList = response.body();
-                recyclerAdapter.updateRecycleAdapter(imageList);
-            }
-
-            @Override
-            public void onFailure(Call<List<Pictures>> call, Throwable t) {
-                Log.d(Constants.TAG,"onFailure = ------>called<----- "+t.toString());
-            }
-        });
+        callAPI();
     }
 
     private void subscribeObservers()
     {
+        //This is where Activity is observing the livedata in the ViewModel
         pictureListViewModel.getPictures().observe(this, new Observer<List<Pictures>>() {
             @Override
             public void onChanged(List<Pictures> pictures) {
-
+                recyclerAdapter.updateRecycleAdapter(pictures);
             }
         });
+    }
+
+    private void initRecyclerView()
+    {
+        imageList = new ArrayList<>();
+        RecyclerView recycleView = findViewById(R.id.linear_layout_with_recycleView_ID);
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        recycleView.setLayoutManager(gridLayoutManager);
+        recyclerAdapter = new MyRecycleAdapter(MainActivity.this, imageList);
+        recycleView.setAdapter(recyclerAdapter);
     }
 
     /*
@@ -94,9 +73,10 @@ public class MainActivity extends AppCompatActivity {
         pictureListViewModel.picturesApi(page, limit);
     }
 
-    private void testRetrofit(){
+    private void callAPI(){
         picturesApi("1", "70");
     }
+
 
 }
 

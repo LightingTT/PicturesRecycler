@@ -17,10 +17,11 @@ public class PictureListViewModel extends ViewModel {
     pictureRepository = PictureRepository.getInstance();
     }
 
-    //immutable. Can be observed and changed indirectly.
+    //Gets its liveData from Repository
     public LiveData<List<Pictures>> getPictures(){
         return pictureRepository.getPictures();
     }
+
 
     public void picturesApi(String page, String limit) {
         pictureRepository.picturesApi(page, limit);

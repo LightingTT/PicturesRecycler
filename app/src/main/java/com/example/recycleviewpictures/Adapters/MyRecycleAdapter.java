@@ -43,18 +43,22 @@ public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolderClass holder, int position) {
 
-        DrawableCrossFadeFactory factory = new DrawableCrossFadeFactory
-                        .Builder()
-                        .setCrossFadeEnabled(true)
-                        .build();
-
         Glide
                         .with(context)
                         .load(imageList.get(position).getDownloadUrl())
-                        .transition(withCrossFade(factory))
+                        .transition(withCrossFade(setTransitionProperties()))
                         .centerCrop()
                         .into(holder.imageView);
         Log.d(Constants.TAG, "onBindViewHolder: ------>called<-----");
+    }
+
+    private DrawableCrossFadeFactory setTransitionProperties() {
+        DrawableCrossFadeFactory factory = new DrawableCrossFadeFactory
+                .Builder()
+                .setCrossFadeEnabled(true)
+                .build();
+
+        return factory;
     }
 
     public void updateRecycleAdapter(List<Pictures> imageListDiff)
@@ -69,7 +73,10 @@ public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.View
 
     @Override
     public int getItemCount() {
-        return imageList.size();
+        if(imageList != null){
+            return imageList.size();
+        }
+        return 0;
     }
 
     public class ViewHolderClass extends RecyclerView.ViewHolder{
