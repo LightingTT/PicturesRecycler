@@ -4,11 +4,11 @@ Purpose of this project was to do an app that shows images from https://picsum.p
 - Make a RecyclerView with Gridview,
 - Create adapter and use Glide form displaying images,
 - Retreive images using Retrofit,
-- get rid of notifyDataChange and implement DiffUtils,
+- Get rid of notifyDataChange and implement DiffUtils,
 - Redesign what you have done into MVVM architecture (added PictureViewModel, Repository and ApiClient),
 
 What's left:
 - Implement dataBinding
-- zoom images in touch
-- add a little spinner wihe images are loading.
+- Zooming images in touch
+- Add a little spinner while images are loading
 
