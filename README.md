@@ -1,6 +1,6 @@
 # PicturesRecycler
 
-Purpose of this project was to do an app that shows images from https://picsum.photos/ and display them in recyclerView. What is done:
+Purpose of this project was to do an app that displays images from https://picsum.photos/ in recyclerView. What is done:
 - Make a RecyclerView with Gridview,
 - Create adapter and use Glide for displaying images,
 - Use Retrofit for communication with API,
