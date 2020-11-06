@@ -7,7 +7,7 @@ Purpose of this project was to do an app that displays images from https://picsu
 - Get rid of notifyDataChange and implement DiffUtils,
 - Redesign what you have done into MVVM architecture (added PictureViewModel, Repository and ApiClient),
 
-What's left:
+What's left to do:
 - Implement dataBinding
 - Zooming images in touch
 - Add a little spinner while images are loading
