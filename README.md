@@ -1,9 +1,9 @@
 # PicturesRecycler
 
-Purpose of this project was to do an app that shows images from https://picsum.photos/ and display them in recyclerView. Planned scope looked more over like this:
+Purpose of this project was to do an app that shows images from https://picsum.photos/ and display them in recyclerView. What is done:
 - Make a RecyclerView with Gridview,
-- Create adapter and use Glide form displaying images,
-- Retreive images using Retrofit,
+- Create adapter and use Glide for displaying images,
+- Use Retrofit for communication with API,
 - Get rid of notifyDataChange and implement DiffUtils,
 - Redesign what you have done into MVVM architecture (added PictureViewModel, Repository and ApiClient),
 
