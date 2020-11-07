@@ -9,6 +9,6 @@ Purpose of this project was to do an app that displays images from https://picsu
 
 What's left to do:
 - Implement dataBinding
-- Zooming images in touch
+- Zooming images on touch
 - Add a little spinner while images are loading
 
