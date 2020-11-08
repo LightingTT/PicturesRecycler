@@ -2,18 +2,16 @@
  * Copyright (c) 2020. by Piotr Zaremba
  */
 
-package com.example.recycleviewpictures.Requests;
+package com.example.recycleviewpictures.requests;
 
-import android.graphics.Picture;
-import android.os.Build;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.recycleviewpictures.AppExecutors;
-import com.example.recycleviewpictures.Requests.Responsnes.Pictures;
-import com.example.recycleviewpictures.Utils.Constants;
+import com.example.recycleviewpictures.requests.responsnes.Pictures;
+import com.example.recycleviewpictures.utils.Constants;
 
 import java.util.List;
 import java.util.concurrent.Future;
@@ -22,6 +20,8 @@ import java.util.concurrent.TimeUnit;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.example.recycleviewpictures.MainActivity.imageList;
 
 public class PictureApiClient {
 
@@ -81,7 +81,7 @@ private class RetrievePicturesRunnable implements Runnable
     @Override
     public void run() {
         ApiService apiService = ServiceGenerator.getApiService();
-        Call<List<Pictures>> responseCall =apiService.getPictureListApi(page, limit);
+        Call<List<Pictures>> responseCall = apiService.getPictureListApi(page, limit);
         responseCall.enqueue(new Callback<List<Pictures>>() {
             @Override
             public void onResponse(Call<List<Pictures>> call, Response<List<Pictures>> response) {
@@ -89,20 +89,9 @@ private class RetrievePicturesRunnable implements Runnable
                 List<Pictures> imageList = response.body();
                 Log.d(Constants.TAG, "onResponse: " + response.body().toString());
                 for(Pictures picture : imageList){
-                    Log.d(Constants.TAG, "onResponse: " + picture.getDownloadUrl());
+                    Log.d(Constants.TAG, "onResponse: " + picture.getDownloadUrl()); // log purposes
                 }
-
-                if(page == "1")
-                {
                     picturesLiveData.postValue(imageList);
-                }
-                else
-                {
-                    //Tutaj jest zjebane, dodaje jeden obiekt a wyzej dodaje cala liste.
-                    List<Pictures> currentList = picturesLiveData.getValue();
-                    currentList.add(new Pictures()); // <--
-                    picturesLiveData.postValue(currentList);
-                }
             }
 
             @Override

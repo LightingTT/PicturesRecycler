@@ -1,4 +1,4 @@
-package com.example.recycleviewpictures.Utils;
+package com.example.recycleviewpictures.utils;
 
 public class Constants {
 
