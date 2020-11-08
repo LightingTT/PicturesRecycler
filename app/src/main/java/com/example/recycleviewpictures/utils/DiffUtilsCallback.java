@@ -1,8 +1,8 @@
-package com.example.recycleviewpictures.Utils;
+package com.example.recycleviewpictures.utils;
 
 import androidx.recyclerview.widget.DiffUtil;
 
-import com.example.recycleviewpictures.Requests.Responsnes.Pictures;
+import com.example.recycleviewpictures.requests.responsnes.Pictures;
 
 import java.util.List;
 

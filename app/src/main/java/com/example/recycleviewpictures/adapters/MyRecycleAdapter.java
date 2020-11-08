@@ -1,4 +1,4 @@
-package com.example.recycleviewpictures.Adapters;
+package com.example.recycleviewpictures.adapters;
 
 import android.content.Context;
 import android.util.Log;
@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
-import com.example.recycleviewpictures.Utils.Constants;
-import com.example.recycleviewpictures.Utils.DiffUtilsCallback;
-import com.example.recycleviewpictures.Requests.Responsnes.Pictures;
+import com.example.recycleviewpictures.utils.Constants;
+import com.example.recycleviewpictures.utils.DiffUtilsCallback;
+import com.example.recycleviewpictures.requests.responsnes.Pictures;
 import com.example.recycleviewpictures.R;
 
 import java.util.List;

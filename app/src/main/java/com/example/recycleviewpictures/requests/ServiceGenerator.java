@@ -1,6 +1,6 @@
-package com.example.recycleviewpictures.Requests;
+package com.example.recycleviewpictures.requests;
 
-import com.example.recycleviewpictures.Utils.Constants;
+import com.example.recycleviewpictures.utils.Constants;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

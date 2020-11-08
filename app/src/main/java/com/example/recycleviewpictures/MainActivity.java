@@ -6,25 +6,14 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.Picture;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.ProgressBar;
 
-import com.example.recycleviewpictures.Adapters.MyRecycleAdapter;
-import com.example.recycleviewpictures.Requests.ApiService;
-import com.example.recycleviewpictures.Requests.Responsnes.Pictures;
-import com.example.recycleviewpictures.Requests.ServiceGenerator;
-import com.example.recycleviewpictures.Utils.Constants;
-import com.example.recycleviewpictures.ViewModels.PictureListViewModel;
+import com.example.recycleviewpictures.adapters.MyRecycleAdapter;
+import com.example.recycleviewpictures.requests.responsnes.Pictures;
+import com.example.recycleviewpictures.viewModels.PictureListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -74,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void callAPI(){
-        picturesApi("1", "70");
+        picturesApi("4", "70");
     }
 
 

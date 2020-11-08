@@ -1,10 +1,10 @@
-package com.example.recycleviewpictures.ViewModels;
+package com.example.recycleviewpictures.viewModels;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import com.example.recycleviewpictures.Repositories.PictureRepository;
-import com.example.recycleviewpictures.Requests.Responsnes.Pictures;
+import com.example.recycleviewpictures.repositories.PictureRepository;
+import com.example.recycleviewpictures.requests.responsnes.Pictures;
 
 import java.util.List;
 
