@@ -2,12 +2,11 @@
  * Copyright (c) 2020. by Piotr Zaremba
  */
 
-package com.example.recycleviewpictures.Repositories;
+package com.example.recycleviewpictures.repositories;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
-import com.example.recycleviewpictures.Requests.PictureApiClient;
-import com.example.recycleviewpictures.Requests.Responsnes.Pictures;
+import com.example.recycleviewpictures.requests.PictureApiClient;
+import com.example.recycleviewpictures.requests.responsnes.Pictures;
 import java.util.List;
 
 public class PictureRepository {

@@ -1,19 +1,22 @@
-package com.example.recycleviewpictures.Adapters;
+package com.example.recycleviewpictures.adapters;
 
 import android.content.Context;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
-import com.example.recycleviewpictures.Utils.Constants;
-import com.example.recycleviewpictures.Utils.DiffUtilsCallback;
-import com.example.recycleviewpictures.Requests.Responsnes.Pictures;
+import com.example.recycleviewpictures.databinding.SinglePictureViewBinding;
+import com.example.recycleviewpictures.utils.Constants;
+import com.example.recycleviewpictures.utils.DiffUtilsCallback;
+import com.example.recycleviewpictures.requests.responsnes.Pictures;
 import com.example.recycleviewpictures.R;
 
 import java.util.List;
@@ -35,13 +38,20 @@ public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.View
     @Override
     public ViewHolderClass onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.single_picture_view, parent, false);
-        ViewHolderClass linearViewHolderClass = new ViewHolderClass(view);
-        return linearViewHolderClass;
+//        View view = LayoutInflater.from(context).inflate(R.layout.single_picture_view, parent, false);
+//        ViewHolderClass linearViewHolderClass = new ViewHolderClass(view);
+//        return linearViewHolderClass;
+
+        SinglePictureViewBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context),
+                                            R.layout.single_picture_view, parent, false);
+        return new ViewHolderClass(binding.getRoot());
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderClass holder, int position) {
+
+        Pictures pictures = imageList.get(position);
+        holder.singlePictureViewBinding.setPictureDataBind(pictures);
 
         Glide
                         .with(context)
@@ -81,11 +91,13 @@ public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.View
 
     public class ViewHolderClass extends RecyclerView.ViewHolder{
 
-        private ImageView imageView;
+        //private ImageView imageView;
+        SinglePictureViewBinding singlePictureViewBinding;
 
         public ViewHolderClass(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.single_picture_id);
+            //imageView = itemView.findViewById(R.id.single_picture_id);
+            singlePictureViewBinding = DataBindingUtil.bind(itemView);
         }
     }
 }

@@ -2,13 +2,9 @@
  * Copyright (c) 2020. by Piotr Zaremba
  */
 
-package com.example.recycleviewpictures.Requests.Responsnes;
-import android.graphics.Picture;
+package com.example.recycleviewpictures.requests.responsnes;
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
 /*
  * Class responsible for building objects from deserialized data.

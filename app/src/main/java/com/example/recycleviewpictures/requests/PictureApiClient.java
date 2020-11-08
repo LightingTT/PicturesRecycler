@@ -2,18 +2,16 @@
  * Copyright (c) 2020. by Piotr Zaremba
  */
 
-package com.example.recycleviewpictures.Requests;
+package com.example.recycleviewpictures.requests;
 
-import android.graphics.Picture;
-import android.os.Build;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.recycleviewpictures.AppExecutors;
-import com.example.recycleviewpictures.Requests.Responsnes.Pictures;
-import com.example.recycleviewpictures.Utils.Constants;
+import com.example.recycleviewpictures.requests.responsnes.Pictures;
+import com.example.recycleviewpictures.utils.Constants;
 
 import java.util.List;
 import java.util.concurrent.Future;
@@ -94,13 +92,12 @@ private class RetrievePicturesRunnable implements Runnable
 
                 if(page == "1")
                 {
-                    picturesLiveData.postValue(imageList);
+                    picturesLiveData.postValue(imageList); // post value on background thread
                 }
                 else
                 {
-                    //Tutaj jest zjebane, dodaje jeden obiekt a wyzej dodaje cala liste.
                     List<Pictures> currentList = picturesLiveData.getValue();
-                    currentList.add(new Pictures()); // <--
+                    currentList.addAll(currentList);
                     picturesLiveData.postValue(currentList);
                 }
             }

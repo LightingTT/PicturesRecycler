@@ -2,9 +2,9 @@
  * Copyright (c) 2020. by Piotr Zaremba
  */
 
-package com.example.recycleviewpictures.Requests;
+package com.example.recycleviewpictures.requests;
 
-import com.example.recycleviewpictures.Requests.Responsnes.Pictures;
+import com.example.recycleviewpictures.requests.responsnes.Pictures;
 
 import java.util.List;
 

@@ -1,33 +1,25 @@
 package com.example.recycleviewpictures;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.Picture;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.ProgressBar;
 
-import com.example.recycleviewpictures.Adapters.MyRecycleAdapter;
-import com.example.recycleviewpictures.Requests.ApiService;
-import com.example.recycleviewpictures.Requests.Responsnes.Pictures;
-import com.example.recycleviewpictures.Requests.ServiceGenerator;
-import com.example.recycleviewpictures.Utils.Constants;
-import com.example.recycleviewpictures.ViewModels.PictureListViewModel;
+import com.example.recycleviewpictures.adapters.MyRecycleAdapter;
+import com.example.recycleviewpictures.databinding.ActivityMainBinding;
+import com.example.recycleviewpictures.requests.responsnes.Pictures;
+import com.example.recycleviewpictures.viewModels.PictureListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class MainActivity extends AppCompatActivity {
 
+    ActivityMainBinding activityMainBinding;
     public static List<Pictures> imageList;
     private MyRecycleAdapter recyclerAdapter;
     private PictureListViewModel pictureListViewModel;
@@ -36,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         pictureListViewModel = ViewModelProviders.of(this).get(PictureListViewModel.class);
 
         initRecyclerView();
