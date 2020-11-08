@@ -13,10 +13,15 @@ import com.example.recycleviewpictures.AppExecutors;
 import com.example.recycleviewpictures.requests.responsnes.Pictures;
 import com.example.recycleviewpictures.utils.Constants;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Scheduler;
+import io.reactivex.SingleObserver;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -46,25 +51,46 @@ public class PictureApiClient {
 
     public void picturesAPI(String page, String limit) {
 
-        if(retrievePicturesRunnable != null) {
-            retrievePicturesRunnable = null;
-        }
-        retrievePicturesRunnable = new RetrievePicturesRunnable(page, limit);
-        final Future handler = AppExecutors
-                .getInstance()
-                .getNetworkIO()
-                .submit(retrievePicturesRunnable);
+        ServiceGenerator.getApiService()
+                .getPictureListApiRx(page, limit)
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .subscribe(new SingleObserver<List<Pictures>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
-        AppExecutors
-                .getInstance()
-                .getNetworkIO()
-                .schedule(new Runnable() {
-            @Override
-            public void run() {
-                // Let the user know its timed out
-                handler.cancel(true);
-            }
-        }, Constants.NETWORK_TIMEOUT, TimeUnit.MILLISECONDS);
+                    }
+
+                    @Override
+                    public void onSuccess(List<Pictures> value) {
+                        picturesLiveData.postValue(value);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        picturesLiveData.postValue(Collections.emptyList());
+                    }
+                });
+
+//        if(retrievePicturesRunnable != null) {
+//            retrievePicturesRunnable = null;
+//        }
+//        retrievePicturesRunnable = new RetrievePicturesRunnable(page, limit);
+//        final Future handler = AppExecutors
+//                .getInstance()
+//                .getNetworkIO()
+//                .submit(retrievePicturesRunnable);
+//
+//        AppExecutors
+//                .getInstance()
+//                .getNetworkIO()
+//                .schedule(new Runnable() {
+//            @Override
+//            public void run() {
+//                // Let the user know its timed out
+//                handler.cancel(true);
+//            }
+//        }, Constants.NETWORK_TIMEOUT, TimeUnit.MILLISECONDS);
     }
 
 private class RetrievePicturesRunnable implements Runnable
@@ -88,10 +114,10 @@ private class RetrievePicturesRunnable implements Runnable
                 Log.d(Constants.TAG, "onResponse: Server response: " + response.toString());
                 List<Pictures> imageList = response.body();
                 Log.d(Constants.TAG, "onResponse: " + response.body().toString());
-                for(Pictures picture : imageList){
+                for (Pictures picture : imageList) {
                     Log.d(Constants.TAG, "onResponse: " + picture.getDownloadUrl()); // log purposes
                 }
-                    picturesLiveData.postValue(imageList);
+                picturesLiveData.postValue(imageList);
             }
 
             @Override
