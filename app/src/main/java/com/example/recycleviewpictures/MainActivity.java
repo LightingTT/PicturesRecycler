@@ -1,6 +1,7 @@
 package com.example.recycleviewpictures;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.example.recycleviewpictures.adapters.MyRecycleAdapter;
+import com.example.recycleviewpictures.databinding.ActivityMainBinding;
 import com.example.recycleviewpictures.requests.responsnes.Pictures;
 import com.example.recycleviewpictures.viewModels.PictureListViewModel;
 
@@ -20,10 +22,12 @@ public class MainActivity extends AppCompatActivity {
     public static List<Pictures> imageList;
     private MyRecycleAdapter recyclerAdapter;
     private PictureListViewModel pictureListViewModel;
+    ActivityMainBinding activityMainBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         setContentView(R.layout.activity_main);
         pictureListViewModel = ViewModelProviders.of(this).get(PictureListViewModel.class);
 
