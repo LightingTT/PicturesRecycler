@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+//        activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main); // for data binding
         setContentView(R.layout.activity_main);
         pictureListViewModel = ViewModelProviders.of(this).get(PictureListViewModel.class);
 
