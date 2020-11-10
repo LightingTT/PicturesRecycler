@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="pictureDataBinding"
+            type="com.example.recycleviewpictures.requests.responsnes.Pictures" />
+    </data>
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -6,7 +13,8 @@
     <ImageView
         android:layout_width="210dp"
         android:layout_height="200dp"
-        android:id="@+id/single_picture_id"/>
+        android:id="@+id/single_picture_id"
+        app:pictureUrl="@{pictureDataBinding.downloadUrl}"/>
 
 </LinearLayout>
-
+</layout>
