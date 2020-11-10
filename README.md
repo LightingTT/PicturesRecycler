@@ -6,9 +6,9 @@ Purpose of this project was to do an app that displays images from https://picsu
 - Use Retrofit for communication with API,
 - Get rid of notifyDataChange and implement DiffUtils,
 - Redesign what you have done into MVVM architecture (added PictureViewModel, Repository and ApiClient),
+- Implement dataBinding
 
 What's left to do:
-- Implement dataBinding
 - Zooming images on touch
 - Add a little spinner while images are loading
 
