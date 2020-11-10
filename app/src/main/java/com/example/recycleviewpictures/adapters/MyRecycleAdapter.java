@@ -43,7 +43,7 @@ public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolderClass holder, int position) {
         holder.singlePictureViewBinding.setPictureDataBinding(imageList.get(position));
-        holder.singlePictureViewBinding.setPictureDataBindLand(imageList.get(position));
+        holder.singlePictureViewBinding.setPictureDataBindingLand(imageList.get(position));
 
     }
 

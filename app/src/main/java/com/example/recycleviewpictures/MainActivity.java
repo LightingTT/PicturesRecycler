@@ -1,5 +1,6 @@
 package com.example.recycleviewpictures;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private MyRecycleAdapter recyclerAdapter;
     private PictureListViewModel pictureListViewModel;
     private ActivityMainBinding activityMainBinding;
+    private static boolean isNew = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +42,8 @@ public class MainActivity extends AppCompatActivity {
     private void subscribeObservers()
     {
         //This is where Activity is observing the livedata in the ViewModel
-        pictureListViewModel.getPictures().observe(this, new Observer<List<Pictures>>() {
-            @Override
-            public void onChanged(List<Pictures> pictures) {
-                recyclerAdapter.updateRecycleAdapter(pictures);
-            }
-        });
+        pictureListViewModel.getPictures().observe(this, pictures ->
+                recyclerAdapter.updateRecycleAdapter(pictures));
     }
 
     private void initRecyclerView()
@@ -58,19 +57,20 @@ public class MainActivity extends AppCompatActivity {
             recycleView.setAdapter(recyclerAdapter);
     }
 
-    /*
-     * MainActivity <-- PictureListViewModel <-- PictureRepository <-- PictureApiClient
-     */
+     //MainActivity <-- PictureListViewModel <-- PictureRepository <-- PictureApiClient
     private void picturesApi(String page, String limit)
     {
         pictureListViewModel.picturesApi(page, limit);
     }
 
+    //Temp workaround for changing to landscape and saving state
     private void callAPI(){
-        picturesApi("4", "70");
+        if (!isNew)
+        {
+            picturesApi("4", "40");
+            isNew = true;
+        }
     }
-
-
 }
 
 
