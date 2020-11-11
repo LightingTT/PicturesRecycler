@@ -25,7 +25,7 @@ import static com.example.recycleviewpictures.MainActivity.imageList;
 
 public class PictureApiClient {
 
-    private static PictureApiClient instance;
+    private static PictureApiClient instance = null;
     private MutableLiveData<List<Pictures>> picturesLiveData;
     private RetrievePicturesRunnable retrievePicturesRunnable;
 

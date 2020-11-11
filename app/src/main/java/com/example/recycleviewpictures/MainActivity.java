@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,12 +28,11 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding activityMainBinding;
     private static boolean isNew = false;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        pictureListViewModel = ViewModelProviders.of(this).get(PictureListViewModel.class);
+        pictureListViewModel = new ViewModelProvider(this).get(PictureListViewModel.class);
 
         initRecyclerView();
         subscribeObservers();
