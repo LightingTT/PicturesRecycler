@@ -1,22 +1,16 @@
 package com.example.recycleviewpictures;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
-import android.provider.ContactsContract;
-
 import com.example.recycleviewpictures.adapters.MyRecycleAdapter;
 import com.example.recycleviewpictures.databinding.ActivityMainBinding;
 import com.example.recycleviewpictures.requests.responsnes.Pictures;
 import com.example.recycleviewpictures.viewModels.PictureListViewModel;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,11 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Temp workaround for changing to landscape and saving state
     private void callAPI(){
-        if (!isNew)
-        {
             picturesApi("4", "40");
-            isNew = true;
-        }
     }
 }
 

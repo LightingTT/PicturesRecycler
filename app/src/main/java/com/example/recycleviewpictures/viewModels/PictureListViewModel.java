@@ -13,7 +13,6 @@ public class PictureListViewModel extends ViewModel {
 
     private MutableLiveData<List<Pictures>> pictureList = new MutableLiveData<>();
     private PictureRepository pictureRepository;
-    private SavedStateHandle state;
 
     public PictureListViewModel() {
     pictureRepository = PictureRepository.getInstance();
