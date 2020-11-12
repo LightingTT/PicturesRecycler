@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void subscribeObservers()
     {
-        //This is where Activity is observing the livedata in the ViewModel
         pictureListViewModel.getPictures().observe(this, pictures ->
                 recyclerAdapter.updateRecycleAdapter(pictures));
     }
@@ -58,8 +57,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Temp workaround for changing to landscape and saving state
-    private void callAPI(){
+    private void callAPI() {
+        if (!isNew) {
             picturesApi("4", "40");
+            isNew = true;
+
+        }
     }
 }
 
