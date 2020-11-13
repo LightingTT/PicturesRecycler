@@ -6,7 +6,8 @@ Libraries:
 - MVVM Architecture
 - Retrofit2 & Gson
 - Architecture components (LiveData, ViewModel, DataBinding)
-- Rxjava
+- Glide
+- RxJava
 
 API Services used:
 - Lorem Picsum (https://picsum.photos/)
