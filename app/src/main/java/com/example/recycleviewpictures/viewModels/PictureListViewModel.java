@@ -10,21 +10,19 @@ import java.util.List;
 
 public class PictureListViewModel extends ViewModel {
 
-    private MutableLiveData<List<Pictures>> pictureList = new MutableLiveData<>();
-    private PictureRepository pictureRepository;
+    private final PictureRepository pictureRepository;
+    LiveData<List<Pictures>> picturesLiveData;
 
     public PictureListViewModel() {
     pictureRepository = PictureRepository.getInstance();
+    picturesLiveData = pictureRepository.getPictures();
+
+    pictureRepository.picturesApi("5", "100");
     }
 
     //Gets its liveData from Repository
     public LiveData<List<Pictures>> getPictures(){
-        return pictureRepository.getPictures();
-    }
-
-
-    public void picturesApi(String page, String limit) {
-        pictureRepository.picturesApi(page, limit);
+        return picturesLiveData;
     }
 
 
