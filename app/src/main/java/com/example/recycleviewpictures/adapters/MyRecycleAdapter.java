@@ -67,7 +67,6 @@ public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.View
 
     public class ViewHolderClass extends RecyclerView.ViewHolder{
 
-        private ImageView imageView;
         private SinglePictureViewBinding singlePictureViewBinding;
 
         public ViewHolderClass(@NonNull SinglePictureViewBinding binding) {

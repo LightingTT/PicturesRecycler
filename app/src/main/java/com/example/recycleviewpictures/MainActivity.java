@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     private MyRecycleAdapter recyclerAdapter;
     private PictureListViewModel pictureListViewModel;
     private ActivityMainBinding activityMainBinding;
-    private static boolean isNew = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
         initRecyclerView();
         subscribeObservers();
-        callAPI();
     }
 
     private void subscribeObservers()
@@ -48,21 +46,6 @@ public class MainActivity extends AppCompatActivity {
             recycleView.setLayoutManager(gridLayoutManager);
             recyclerAdapter = new MyRecycleAdapter(MainActivity.this, imageList);
             recycleView.setAdapter(recyclerAdapter);
-    }
-
-     //MainActivity <-- PictureListViewModel <-- PictureRepository <-- PictureApiClient
-    private void picturesApi(String page, String limit)
-    {
-        pictureListViewModel.picturesApi(page, limit);
-    }
-
-    //Temp workaround for changing to landscape and saving state
-    private void callAPI() {
-        if (!isNew) {
-            picturesApi("4", "40");
-            isNew = true;
-
-        }
     }
 }
 
