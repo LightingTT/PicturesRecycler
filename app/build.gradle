@@ -26,8 +26,8 @@ android {
         }
     }
 
-    dataBinding {
-        enabled = true
+    buildFeatures{
+        dataBinding = true
     }
 }
 
@@ -51,6 +51,7 @@ dependencies {
 
     //Glide
     implementation "com.github.bumptech.glide:recyclerview-integration:4.11.0"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"

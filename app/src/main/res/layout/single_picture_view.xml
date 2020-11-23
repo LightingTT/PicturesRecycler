@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+        <import type="android.view.View" />
+        <variable
+            name="pictureTransition"
+            type="com.example.recycleviewpictures.adapters.MyRecycleAdapter" />
         <variable
             name="pictureDataBinding"
             type="com.example.recycleviewpictures.requests.responsnes.Pictures" />
@@ -11,10 +15,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <ImageView
-        android:layout_width="210dp"
+        android:layout_width="205dp"
         android:layout_height="200dp"
-        android:id="@+id/single_picture_id"
-        app:pictureUrl="@{pictureDataBinding.downloadUrl}"/>
+        android:id="@+id/image_view_id"
+        android:scaleType="centerCrop"
+        android:transitionName="ImageTN"/>
+<!--        app:pictureUrl="@{pictureDataBinding.downloadUrl}" />-->
+    <TextView
+        android:id="@+id/author"
+        android:layout_width="200dp"
+        android:layout_height="20dp"
+        android:transitionName="authorTN"
+        android:visibility="invisible"/>
+
 
 </LinearLayout>
 </layout>
