@@ -24,13 +24,13 @@ public class PictureRepository {
         pictureApiClient = PictureApiClient.getInstance();
     }
 
-    //Gets its liveData from ApiClient
+    //Gets liveData from ApiClient
     public LiveData<List<Pictures>> getPictures(){
         return pictureApiClient.getPictures();
     }
 
     public void picturesApi(String page, String limit) {
-        if (page == "0"){
+        if (page.equals("0")){
             page = "1";
         }
         pictureApiClient.picturesAPI(page, limit);

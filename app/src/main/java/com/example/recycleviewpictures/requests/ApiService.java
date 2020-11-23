@@ -23,6 +23,7 @@ public interface ApiService {
     @GET("/id/{number}/info")
     Call <Pictures> getPictureApi(@Path("number") int number);
 
+
     //RxJava list
     @GET("/v2/list")
     Single<List<Pictures>> getPictureListApiRx(@Query("page") String page,

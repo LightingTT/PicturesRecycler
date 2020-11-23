@@ -20,8 +20,7 @@ public class GlideBindingAdapter {
         Glide
                 .with(context)
                 .load(pictureUrl)
-                    .transition(withCrossFade(setTransitionProperties()))
-                    .centerCrop()
+                .transition(withCrossFade(setTransitionProperties()))
                 .into(view);
     }
 
@@ -33,4 +32,5 @@ public class GlideBindingAdapter {
 
         return factory;
     }
+
 }

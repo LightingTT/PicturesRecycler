@@ -15,8 +15,8 @@
         android:id="@+id/single_picture_id"
         android:layout_width="365dp"
         android:layout_height="210dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:pictureUrl="@{pictureDataBindingLand.downloadUrl}"/>
+        app:layout_constraintStart_toStartOf="parent"/>
+<!--        app:pictureUrl="@{pictureDataBindingLand.downloadUrl}"-->
 
 </LinearLayout>
 </layout>
