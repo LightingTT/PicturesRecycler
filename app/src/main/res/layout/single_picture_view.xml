@@ -28,6 +28,5 @@
         android:transitionName="authorTN"
         android:visibility="invisible"/>
 
-
 </LinearLayout>
 </layout>
