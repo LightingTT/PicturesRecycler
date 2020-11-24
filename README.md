@@ -12,7 +12,3 @@ Libraries:
 API Services used:
 - Lorem Picsum (https://picsum.photos/)
 
-What's left to do:
-- Zooming images on touch
-- Add a little spinner while images are loading
-
