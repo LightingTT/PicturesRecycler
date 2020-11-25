@@ -19,10 +19,13 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
 import com.example.recycleviewpictures.DetailedViewActivity;
 import com.example.recycleviewpictures.R;
+import com.example.recycleviewpictures.databinding.SinglePictureViewBinding;
 import com.example.recycleviewpictures.utils.DiffUtilsCallback;
 import com.example.recycleviewpictures.requests.responsnes.Pictures;
 
 import java.util.List;
+
+import io.reactivex.Single;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
@@ -65,6 +68,12 @@ public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.View
                 context.startActivity(intent, activityOptionsCompat.toBundle());
             }
         });
+
+        //testing
+        holder.b.setPictureDataBinding(imageList.get(position));
+        //Co dla textview? Jak polaczyc z clicklistenerem wyzej? Wszystko do GlideBindingAdaptera?
+
+
     }
 
     private DrawableCrossFadeFactory setTransitionProperties() {
@@ -99,10 +108,17 @@ public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.View
        private final ImageView picture;
        private final TextView author;
 
-        public ViewHolderClass(@NonNull View itemView) {
+       //testing
+       SinglePictureViewBinding b;
+
+       //drugi argument testing
+        public ViewHolderClass(@NonNull View itemView, SinglePictureViewBinding binding) {
             super(itemView);
             picture = itemView.findViewById(R.id.image_view_id);
             author = itemView.findViewById(R.id.author);
+
+            //testing
+            b = binding;
 
         }
     }

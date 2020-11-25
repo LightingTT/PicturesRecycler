@@ -3,9 +3,6 @@
     <data>
         <import type="android.view.View" />
         <variable
-            name="pictureTransition"
-            type="com.example.recycleviewpictures.adapters.MyRecycleAdapter" />
-        <variable
             name="pictureDataBinding"
             type="com.example.recycleviewpictures.requests.responsnes.Pictures" />
     </data>
@@ -27,6 +24,7 @@
         android:layout_height="20dp"
         android:transitionName="authorTN"
         android:visibility="invisible"/>
+<!--        android:text="@{pictureDataBinding.author}"/> -->
 
 </LinearLayout>
 </layout>
