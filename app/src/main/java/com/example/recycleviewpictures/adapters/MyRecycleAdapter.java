@@ -1,70 +1,45 @@
 package com.example.recycleviewpictures.adapters;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.core.util.Pair;
-import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
-import com.example.recycleviewpictures.DetailedViewActivity;
-import com.example.recycleviewpictures.R;
-import com.example.recycleviewpictures.utils.DiffUtilsCallback;
+import com.example.recycleviewpictures.databinding.SinglePictureViewBinding;
 import com.example.recycleviewpictures.requests.responsnes.Pictures;
+import com.example.recycleviewpictures.utils.DiffUtilsCallback;
 
 import java.util.List;
 
-import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.ViewHolderClass> {
 
+    private final ImageAdapterClickListener imageAdapterClickListener;
     private Context context;
     private List<Pictures> imageList;
 
-    public MyRecycleAdapter(Context context, List<Pictures> imageList)
-    {
+    public MyRecycleAdapter(Context context, List<Pictures> imageList, ImageAdapterClickListener imageAdapterClickListener) {
         this.context = context;
         this.imageList = imageList;
+        this.imageAdapterClickListener = imageAdapterClickListener;
     }
 
     @NonNull
     @Override
     public ViewHolderClass onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View view = LayoutInflater.from(context).inflate(R.layout.single_picture_view, parent, false);
-        return new ViewHolderClass(view);
+        SinglePictureViewBinding singlePictureViewBinding = SinglePictureViewBinding.inflate(LayoutInflater.from(context));
+        ViewHolderClass linearViewHolderClass = new ViewHolderClass(singlePictureViewBinding);
+        return linearViewHolderClass;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderClass holder, int position) {
-        Glide
-
-                .with(context)
-                .load(imageList.get(position).getDownloadUrl())
-                .transition(withCrossFade(setTransitionProperties()))
-                .into(holder.picture);
-
-        holder.picture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, DetailedViewActivity.class);
-                intent.putExtra("picture", imageList.get(position));
-                Pair<View, String> p1 = Pair.create(holder.picture, "ImageTN");
-                Pair<View, String> p2 = Pair.create(holder.author, "authorTM");
-                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, p1, p2);
-                context.startActivity(intent, activityOptionsCompat.toBundle());
-            }
-        });
+        holder.b.setListener(imageAdapterClickListener);
+        holder.b.setPicture(imageList.get(position));
     }
 
     private DrawableCrossFadeFactory setTransitionProperties() {
@@ -76,8 +51,7 @@ public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.View
         return factory;
     }
 
-    public void updateRecycleAdapter(List<Pictures> imageListDiff)
-    {
+    public void updateRecycleAdapter(List<Pictures> imageListDiff) {
         final DiffUtilsCallback diffUtilsCallback = new DiffUtilsCallback(this.imageList, imageListDiff);
         final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffUtilsCallback);
 
@@ -88,22 +62,23 @@ public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.View
 
     @Override
     public int getItemCount() {
-        if(imageList != null){
+        if (imageList != null) {
             return imageList.size();
         }
         return 0;
     }
 
-    public static class ViewHolderClass extends RecyclerView.ViewHolder{
+    public interface ImageAdapterClickListener {
+        void onClick(Pictures pictures, View view);
+    }
 
-       private final ImageView picture;
-       private final TextView author;
+    public class ViewHolderClass extends RecyclerView.ViewHolder {
 
-        public ViewHolderClass(@NonNull View itemView) {
-            super(itemView);
-            picture = itemView.findViewById(R.id.image_view_id);
-            author = itemView.findViewById(R.id.author);
+        private SinglePictureViewBinding b;
 
+        public ViewHolderClass(@NonNull SinglePictureViewBinding binding) {
+            super(binding.getRoot());
+            b = binding;
         }
     }
 }

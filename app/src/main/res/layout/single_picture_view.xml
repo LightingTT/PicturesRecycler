@@ -1,32 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image_view_id"
+            android:layout_width="205dp"
+            android:layout_height="200dp"
+            android:onClick="@{(v)->listener.onClick(picture,v)}"
+            android:scaleType="centerCrop"
+            android:transitionName="ImageTN"
+            app:pictureUrl="@{picture.downloadUrl}" />
+        <!--        app:pictureUrl="@{pictureDataBinding.downloadUrl}" />-->
+        <TextView
+            android:id="@+id/author"
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:transitionName="authorTN"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
     <data>
+
         <import type="android.view.View" />
+
         <variable
             name="pictureTransition"
             type="com.example.recycleviewpictures.adapters.MyRecycleAdapter" />
+
         <variable
-            name="pictureDataBinding"
+            name="picture"
             type="com.example.recycleviewpictures.requests.responsnes.Pictures" />
+
+        <variable
+            name="listener"
+            type="com.example.recycleviewpictures.adapters.MyRecycleAdapter.ImageAdapterClickListener" />
     </data>
-
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <ImageView
-        android:layout_width="205dp"
-        android:layout_height="200dp"
-        android:id="@+id/image_view_id"
-        android:scaleType="centerCrop"
-        android:transitionName="ImageTN"/>
-<!--        app:pictureUrl="@{pictureDataBinding.downloadUrl}" />-->
-    <TextView
-        android:id="@+id/author"
-        android:layout_width="200dp"
-        android:layout_height="20dp"
-        android:transitionName="authorTN"
-        android:visibility="invisible"/>
-
-</LinearLayout>
 </layout>
