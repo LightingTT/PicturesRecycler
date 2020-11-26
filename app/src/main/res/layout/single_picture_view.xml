@@ -5,6 +5,9 @@
         <variable
             name="pictureDataBinding"
             type="com.example.recycleviewpictures.requests.responsnes.Pictures" />
+        <variable
+            name="clickHandler"
+            type="com.example.recycleviewpictures.onClickHandlerInterface" />
     </data>
 
 <LinearLayout
@@ -16,7 +19,8 @@
         android:layout_height="200dp"
         android:id="@+id/image_view_id"
         android:scaleType="centerCrop"
-        android:transitionName="ImageTN"/>
+        android:transitionName="ImageTN"
+        android:onClick="@{(v)-> clickHandler.onClicker(v)}"/>
 <!--        app:pictureUrl="@{pictureDataBinding.downloadUrl}" />-->
     <TextView
         android:id="@+id/author"

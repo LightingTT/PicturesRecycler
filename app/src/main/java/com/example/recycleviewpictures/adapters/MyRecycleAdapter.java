@@ -3,6 +3,7 @@ package com.example.recycleviewpictures.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +22,7 @@ import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
 import com.example.recycleviewpictures.DetailedViewActivity;
 import com.example.recycleviewpictures.R;
 import com.example.recycleviewpictures.databinding.SinglePictureViewBinding;
+import com.example.recycleviewpictures.onClickHandlerInterface;
 import com.example.recycleviewpictures.utils.DiffUtilsCallback;
 import com.example.recycleviewpictures.requests.responsnes.Pictures;
 
@@ -33,6 +36,7 @@ public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.View
 
     private Context context;
     private List<Pictures> imageList;
+    private onClickHandlerInterface onClickHandlerInterface;
 
     public MyRecycleAdapter(Context context, List<Pictures> imageList)
     {
@@ -57,21 +61,25 @@ public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.View
                 .transition(withCrossFade(setTransitionProperties()))
                 .into(holder.picture);
 
-        holder.picture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, DetailedViewActivity.class);
-                intent.putExtra("picture", imageList.get(position));
-                Pair<View, String> p1 = Pair.create(holder.picture, "ImageTN");
-                Pair<View, String> p2 = Pair.create(holder.author, "authorTM");
-                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, p1, p2);
-                context.startActivity(intent, activityOptionsCompat.toBundle());
-            }
-        });
+//        holder.picture.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(context, DetailedViewActivity.class);
+////                intent.putExtra("picture", imageList.get(position));
+//                intent.putExtra("picture", (Parcelable) imageList.get(position));
+//                Pair<View, String> p1 = Pair.create(holder.picture, "ImageTN");
+//                Pair<View, String> p2 = Pair.create(holder.author, "authorTM");
+//                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, p1, p2);
+//                context.startActivity(intent, activityOptionsCompat.toBundle());
+//            }
+//        });
 
         //testing
         holder.b.setPictureDataBinding(imageList.get(position));
+        holder.b.setClickHandler(onClickHandlerInterface.onClicker(position,
+
         //Co dla textview? Jak polaczyc z clicklistenerem wyzej? Wszystko do GlideBindingAdaptera?
+       // zrobic clickable w imageview, zrobic funkcje click i tam dac intenty
 
 
     }
@@ -111,14 +119,17 @@ public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.View
        //testing
        SinglePictureViewBinding b;
 
+
        //drugi argument testing
-        public ViewHolderClass(@NonNull View itemView, SinglePictureViewBinding binding) {
-            super(itemView);
+        public ViewHolderClass(@NonNull SinglePictureViewBinding binding) {
+            super(binding.getRoot());
             picture = itemView.findViewById(R.id.image_view_id);
             author = itemView.findViewById(R.id.author);
 
+
             //testing
             b = binding;
+
 
         }
     }
