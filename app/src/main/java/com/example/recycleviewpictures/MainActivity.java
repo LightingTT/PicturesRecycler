@@ -2,13 +2,16 @@ package com.example.recycleviewpictures;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.util.Pair;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-
+import android.view.View;
 import com.example.recycleviewpictures.adapters.MyRecycleAdapter;
 import com.example.recycleviewpictures.databinding.ActivityMainBinding;
 import com.example.recycleviewpictures.requests.responsnes.Pictures;
@@ -23,6 +26,7 @@ public class MainActivity extends AppCompatActivity{
     private RecyclerView recycleView;
     private PictureListViewModel pictureListViewModel;
     private ActivityMainBinding activityMainBinding;
+    private Context context;
 
 
     @Override
@@ -51,9 +55,16 @@ public class MainActivity extends AppCompatActivity{
     private void runAdapter()
     {
         imageList = new ArrayList<>();
-        recyclerAdapter = new MyRecycleAdapter(this, imageList);
+        recyclerAdapter = new MyRecycleAdapter(this, imageList, (pictures, view) -> {
+            Intent intent = new Intent(MainActivity.this, DetailedViewActivity.class);
+            intent.putExtra("pictures", pictures);
+            Pair<View, String> p1 = Pair.create(view, "ImageTN");
+            ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, p1);
+            MainActivity.this.startActivity(intent, activityOptionsCompat.toBundle());
+        });
         recycleView.setAdapter(recyclerAdapter);
     }
+
 }
 
 

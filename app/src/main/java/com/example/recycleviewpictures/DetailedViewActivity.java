@@ -25,7 +25,7 @@ public class DetailedViewActivity extends AppCompatActivity {
 
     public void getIntentFromMainActivity() {
 
-        Pictures pictureObject = (Pictures) getIntent().getExtras().getSerializable("picture");
+        Pictures pictureObject = (Pictures) getIntent().getExtras().getSerializable("pictures");
         setObjectValues(pictureObject);
     }
 
